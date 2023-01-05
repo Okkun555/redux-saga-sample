@@ -1,6 +1,6 @@
-import { createReducer } from '@reduxjs/toolkit';
+import { createReducer, PayloadAction } from '@reduxjs/toolkit';
 import { User } from '../../types/user';
-import { fetchUsers } from './action';
+import { fetchUsers, fetchUsersSuccess } from './action';
 
 export type UserState = {
   loading: boolean;
@@ -13,7 +13,19 @@ const initialState: UserState = {
 };
 
 const reducer = createReducer<UserState>(initialState, {
-  [fetchUsers.type]: (state) => state,
+  [fetchUsers.type]: (state) => {
+    return {
+      ...state,
+      loading: true,
+    };
+  },
+  [fetchUsersSuccess.type]: (state, action: PayloadAction<User[]>) => {
+    return {
+      ...state,
+      loading: false,
+      data: action.payload,
+    };
+  },
 });
 
 export default reducer;

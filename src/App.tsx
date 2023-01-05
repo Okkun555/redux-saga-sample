@@ -1,8 +1,11 @@
+import { Container } from 'semantic-ui-react';
+import UserIndex from './components/pages/UserIndex';
+
 const App = () => {
   return (
-    <div className="App">
-      <h1>This is vite-react-template</h1>
-    </div>
+    <Container style={{ marginTop: '24px' }}>
+      <UserIndex />
+    </Container>
   );
 };
 
