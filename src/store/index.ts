@@ -2,8 +2,13 @@ import createSagaMiddleware from 'redux-saga';
 import { configureStore } from '@reduxjs/toolkit';
 import { userReducer } from './user';
 import rootSaga from './sagas';
+import { UserState } from './user/reducer';
 
 const sagaMiddleware = createSagaMiddleware();
+
+export type State = {
+  user: UserState;
+};
 
 export const store = configureStore({
   reducer: {
