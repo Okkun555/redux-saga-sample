@@ -7,6 +7,7 @@ export function* getAllUsers() {
     const { data } = yield call(axios, 'http://localhost:5174/users');
     yield put(fetchUsersSuccess(data));
   } catch (e) {
+    // TODO: エラー時にアラートとかを出せるようにしたい
     console.error(e);
   }
 }
