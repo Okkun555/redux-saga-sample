@@ -1,5 +1,6 @@
 import { FC } from 'react';
-import { Modal, Button } from 'semantic-ui-react';
+import { Modal, Button, Form } from 'semantic-ui-react';
+import UserForm from './UserForm';
 
 type PropTypes = {
   isOpen: boolean;
@@ -12,6 +13,11 @@ const UserRegisterModal: FC<PropTypes> = ({ isOpen, onClickCancel }) => {
   return (
     <Modal open={isOpen}>
       <Modal.Header>User Register Form</Modal.Header>
+      <Modal.Content>
+        <Form unstackable>
+          <UserForm />
+        </Form>
+      </Modal.Content>
       <Modal.Actions>
         <Button onClick={onClickSubmit} color="google plus">
           Submit
