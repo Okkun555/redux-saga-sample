@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { Modal, Button, Form } from 'semantic-ui-react';
+import useUserDetail from '../../hooks/useUserDetail';
 import UserForm from './UserForm';
 
 type PropTypes = {
@@ -8,14 +9,27 @@ type PropTypes = {
 };
 
 const UserRegisterModal: FC<PropTypes> = ({ isOpen, onClickCancel }) => {
-  const onClickSubmit = () => console.log('登録');
+  const { name, email, age, handleChangeName, handleChangeEmail, handleChangeAge } =
+    useUserDetail();
+
+  const onClickSubmit = () => {
+    console.log(name);
+    console.log(email);
+  };
 
   return (
     <Modal open={isOpen}>
       <Modal.Header>User Register Form</Modal.Header>
       <Modal.Content>
         <Form unstackable>
-          <UserForm />
+          <UserForm
+            name={name}
+            email={email}
+            age={age}
+            handleChangeName={handleChangeName}
+            handleChangeEmail={handleChangeEmail}
+            handleChangeAge={handleChangeAge}
+          />
         </Form>
       </Modal.Content>
       <Modal.Actions>
