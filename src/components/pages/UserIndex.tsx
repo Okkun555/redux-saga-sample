@@ -13,7 +13,8 @@ const UserIndex = () => {
 
   useEffect(() => {
     dispatch(fetchUsers());
-  }, [dispatch]);
+    // FIXME: 追加→リスト更新を表現するためにモーダルの開閉を監視（別の方法ありそう）
+  }, [dispatch, isOpenModal]);
 
   return (
     <>
@@ -21,7 +22,7 @@ const UserIndex = () => {
       <UserList />
 
       <AddButton onClick={() => setIsOpenModal(true)} />
-      <UserRegisterModal isOpen={isOpenModal} onClickCancel={() => setIsOpenModal(false)} />
+      <UserRegisterModal isOpen={isOpenModal} closeModal={() => setIsOpenModal(false)} />
     </>
   );
 };

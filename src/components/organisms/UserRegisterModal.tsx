@@ -1,20 +1,37 @@
 import { FC } from 'react';
+import { useDispatch } from 'react-redux';
 import { Modal, Button, Form } from 'semantic-ui-react';
 import useUserDetail from '../../hooks/useUserDetail';
+import { registerUser } from '../../store/user';
 import UserForm from './UserForm';
 
 type PropTypes = {
   isOpen: boolean;
-  onClickCancel: () => void;
+  closeModal: () => void;
 };
 
-const UserRegisterModal: FC<PropTypes> = ({ isOpen, onClickCancel }) => {
-  const { name, email, age, handleChangeName, handleChangeEmail, handleChangeAge } =
-    useUserDetail();
+const UserRegisterModal: FC<PropTypes> = ({ isOpen, closeModal }) => {
+  const dispatch = useDispatch();
+  const {
+    name,
+    email,
+    age,
+    handleChangeName,
+    handleChangeEmail,
+    handleChangeAge,
+    resetUserDetail,
+  } = useUserDetail();
 
   const onClickSubmit = () => {
-    console.log(name);
-    console.log(email);
+    const params = {
+      name,
+      email,
+      age,
+    };
+
+    dispatch(registerUser(params));
+    resetUserDetail();
+    closeModal();
   };
 
   return (
@@ -36,7 +53,7 @@ const UserRegisterModal: FC<PropTypes> = ({ isOpen, onClickCancel }) => {
         <Button onClick={onClickSubmit} color="google plus">
           Submit
         </Button>
-        <Button onClick={onClickCancel}>Cancel</Button>
+        <Button onClick={closeModal}>Cancel</Button>
       </Modal.Actions>
     </Modal>
   );

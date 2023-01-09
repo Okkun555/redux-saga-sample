@@ -1,6 +1,6 @@
 import { createReducer, PayloadAction } from '@reduxjs/toolkit';
 import { User } from '../../types/user';
-import { fetchUsers, fetchUsersSuccess } from './action';
+import { fetchUsers, fetchUsersSuccess, registerUser, registerUserSuccess } from './action';
 
 export type UserState = {
   loading: boolean;
@@ -24,6 +24,18 @@ const reducer = createReducer<UserState>(initialState, {
       ...state,
       loading: false,
       data: action.payload,
+    };
+  },
+  [registerUser.type]: (state) => {
+    return {
+      ...state,
+      loading: true,
+    };
+  },
+  [registerUserSuccess.type]: (state) => {
+    return {
+      ...state,
+      loading: false,
     };
   },
 });

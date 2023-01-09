@@ -12,6 +12,12 @@ const useUserDetail = (preName = '', preEmail = '', preAge = 20) => {
   const handleChangeAge = (e: React.ChangeEvent<HTMLInputElement>) =>
     setAge(Number(e.target.value));
 
+  const resetUserDetail = () => {
+    setName('');
+    setEmail('');
+    setAge(20);
+  };
+
   return {
     name,
     email,
@@ -19,6 +25,7 @@ const useUserDetail = (preName = '', preEmail = '', preAge = 20) => {
     handleChangeName,
     handleChangeEmail,
     handleChangeAge,
+    resetUserDetail,
   };
 };
 
